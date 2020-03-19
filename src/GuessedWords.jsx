@@ -1,6 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Functional react component for displyaing guessed words, or show instructions when no words are guessed.
+ *
+ * @name GuessedWords
+ * @function
+ * @param {Array} {guessedWords} It is a collection words guessed along with number of matching letters.
+ * @returns {JSX.Element} Displays guessed words and matching letters along with a title or instruction if no words are guessed.
+ */
+
 const GuessedWords = ({ guessedWords }) => {
     let content = <></>;
 
