@@ -1,10 +1,12 @@
 import Enzyme, { shallow } from "enzyme";
 import EnzymeAdapater from "enzyme-adapter-react-16";
 import React from "react";
-import { findByAttribute } from "../test/testUtisl";
+import { findByAttribute, checkProps } from "../test/testUtisl";
 import Congrats from "./Congrats";
 
 Enzyme.configure({ adapter: new EnzymeAdapater() });
+
+const defaultProps = { success: false };
 
 /**
  * Faction function to create a ShallowWrapper for the Congrats component.
@@ -16,7 +18,8 @@ Enzyme.configure({ adapter: new EnzymeAdapater() });
  */
 
 const setup = (props = {}) => {
-    return shallow(<Congrats {...props} />);
+    const setupProps = { ...defaultProps, ...props };
+    return shallow(<Congrats {...setupProps} />);
 };
 
 describe("Congrats", () => {
@@ -27,7 +30,7 @@ describe("Congrats", () => {
     });
 
     test("renders no text when `success` props is false", () => {
-        const wrapper = setup({ success: false });
+        const wrapper = setup();
         const component = findByAttribute(wrapper, "component-congrats");
         expect(component.text()).toBe("");
     });
@@ -36,5 +39,9 @@ describe("Congrats", () => {
         const wrapper = setup({ success: true });
         const component = findByAttribute(wrapper, "congrats-message");
         expect(component.text().length).not.toBe(0);
+    });
+
+    test("renders no wraning when right props are passed", () => {
+        checkProps(Congrats, defaultProps);
     });
 });
