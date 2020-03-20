@@ -1,7 +1,7 @@
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import React from "react";
+import {checkProps, findByAttribute} from "../test/testUtisl";
 import GuessedWords from "./GuessedWords";
-import { checkProps, findByAttribute } from "../test/testUtisl";
 
 const defaultProps = {
     guessedWords: [

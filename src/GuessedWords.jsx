@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 /**
  * Functional react component for displyaing guessed words, or show instructions when no words are guessed.
@@ -32,8 +32,8 @@ const GuessedWords = ({ guessedWords }) => {
         content = (
             <div data-test="guessed-words">
                 <h3>Guessed Words</h3>
-                <table>
-                    <thead>
+                <table className='table table-sm'>
+                    <thead className='table-dark'>
                         <tr>
                             <th>Guess</th>
                             <th>Matching Letters</th>
