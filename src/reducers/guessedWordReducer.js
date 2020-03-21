@@ -1,3 +1,6 @@
+import { actionType } from "../actions";
+
+const INITIAL_STATE = [];
 /**
  * guessWordReducer
  *
@@ -8,8 +11,14 @@
  * @returns {array} new guessedWords state.
  */
 
-const guessWordReducer = (state, action) => {
-    return null;
+const guessWordReducer = (state = INITIAL_STATE, action) => {
+    const { type, payload } = action || {};
+    switch (type) {
+        case actionType.GUESS_WORD:
+            return [...state, payload];
+        default:
+            return state;
+    }
 };
 
 export default guessWordReducer;
