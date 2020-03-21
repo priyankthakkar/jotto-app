@@ -1,3 +1,5 @@
+import { actionType } from "../actions";
+
 const INITIAL_STATE = false;
 
 /**
@@ -11,7 +13,14 @@ const INITIAL_STATE = false;
  */
 
 const successReducer = (state = INITIAL_STATE, action) => {
-    return state;
+    const { type } = action || {};
+
+    switch (type) {
+        case actionType.CORRECT_GUESS:
+            return true;
+        default:
+            return state;
+    }
 };
 
 export default successReducer;
