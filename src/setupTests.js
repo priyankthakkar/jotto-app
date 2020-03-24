@@ -6,4 +6,7 @@ import "@testing-library/jest-dom/extend-expect";
 import Enzyme from "enzyme";
 import EnzymeAdapater from "enzyme-adapter-react-16";
 
-Enzyme.configure({ adapter: new EnzymeAdapater() });
+Enzyme.configure({
+    adapter: new EnzymeAdapater(),
+    disableLifecycleMethods: true
+});
