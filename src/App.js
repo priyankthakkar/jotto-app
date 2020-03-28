@@ -4,6 +4,7 @@ import { getSecretWord } from "./actions";
 import Congrats from "./Congrats";
 import GuessedWords from "./GuessedWords";
 import Input from "./Input";
+import TotalGuesses from "./TotalGuesses";
 
 export class UnconnectedApp extends Component {
     componentDidMount() {
@@ -16,9 +17,9 @@ export class UnconnectedApp extends Component {
             <div className="container">
                 <h1>Jotto</h1>
                 <Congrats success={success} />
-                <Input success={success} />
-
+                <Input />
                 <GuessedWords guessedWords={guessedWords} />
+                <TotalGuesses length={guessedWords.length} />
             </div>
         );
     }

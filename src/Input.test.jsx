@@ -107,4 +107,10 @@ describe("`guessWord` action creator", () => {
         const guessWordArg = guessWordMock.mock.calls[0][0];
         expect(guessWordArg).toBe(guessedWord);
     });
+
+    test("input box is clear after submitting the guessed word", () => {
+        // expect(wrapper.instance().inputBox).toBe("");
+        const inputBox = findByAttribute(wrapper, "input-box");
+        expect(inputBox.props().value).toBe("");
+    });
 });
