@@ -1,21 +1,7 @@
-import React, {Component} from "react";
-import Congrats from "./Congrats";
-import GuessedWords from "./GuessedWords";
+import React from "react";
 
-class App extends Component {
-    render() {
-        return (
-            <div className="container">
-                <h1>Jotto</h1>
-                <Congrats success={true} />
-                <GuessedWords
-                    guessedWords={[
-                        { guessedWord: "train", letterMatchCount: 3 }
-                    ]}
-                />
-            </div>
-        );
-    }
-}
+const App = () => {
+  return <div data-test="component-app"/>;
+};
 
 export default App;
