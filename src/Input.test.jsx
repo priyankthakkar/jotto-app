@@ -1,28 +1,52 @@
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
-import { findByAttribute, checkProps } from "../test/testUtils";
+import { checkProps, findByAttribute } from "../test/testUtils";
+import languageContext from "./contexts/languageContext";
 import Input from "./Input";
 
 /**
  * Factory function to setup Input component.
  * @function
  * @name setup
- * @return {ShallowWrapper}
+ * @params {object} - testValues - context values and props for the component
+ * @return {ReactWrapper}
  */
-const setup = props => {
-  const wrapper = shallow(<Input {...props} />);
+const setup = ({ secretWord, language }) => {
+  secretWord = secretWord || "train";
+  language = language || "en";
+
+  const wrapper = mount(
+    <languageContext.Provider value={language}>
+      <Input secretWord={secretWord} />
+    </languageContext.Provider>
+  );
   return wrapper;
 };
 
+describe("languageContext", () => {
+  test("correctly renders submit string in english", () => {
+    const wrapper = setup({ language: "en" });
+    const submitButton = findByAttribute(wrapper, "submit-button");
+    expect(submitButton.text()).toBe("Submit");
+  });
+
+  test("correctly renders submit string in emoji", () => {
+    const wrapper = setup({ language: "emoji" });
+    const submitButton = findByAttribute(wrapper, "submit-button");
+    expect(submitButton.text()).toBe("🚀");
+  });
+});
+
 describe("Input", () => {
   let wrapper;
+
+  beforeEach(() => {
+    wrapper = setup({});
+  });
+
   const defaultProps = {
     secretWord: "train"
   };
-
-  beforeEach(() => {
-    wrapper = setup(defaultProps);
-  });
 
   test("renders without error", () => {
     const component = findByAttribute(wrapper, "component-input");
@@ -41,11 +65,7 @@ describe("state controlled input field", () => {
   beforeEach(() => {
     mockSetCurrentGuess = jest.fn();
     React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
-
-    const defaultProps = {
-      secretWord: "train"
-    };
-    wrapper = setup(defaultProps);
+    wrapper = setup({});
   });
 
   test("state updates with value of input box upon change", () => {

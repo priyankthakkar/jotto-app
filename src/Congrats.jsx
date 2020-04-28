@@ -12,23 +12,23 @@ import { getStringByLanguage } from "./helpers/strings";
  */
 
 const Congrats = ({ success }) => {
-    const language = React.useContext(languageContext);
+  const language = React.useContext(languageContext);
 
-    if (success) {
-        return (
-            <div data-test="component-congrats" className="alert alert-success">
-                <span data-test="congrats-message">
-                    {getStringByLanguage(language, "congrats")}
-                </span>
-            </div>
-        );
-    } else {
-        return <div data-test="component-congrats" />;
-    }
+  if (success) {
+    return (
+      <div data-test="component-congrats" className="alert alert-success">
+        <span data-test="congrats-message">
+          {getStringByLanguage(language, "congrats")}
+        </span>
+      </div>
+    );
+  } else {
+    return <div data-test="component-congrats" />;
+  }
 };
 
 Congrats.propTypes = {
-    success: PropTypes.bool.isRequired
+  success: PropTypes.bool.isRequired
 };
 
 export default Congrats;

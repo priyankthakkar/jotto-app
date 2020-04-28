@@ -17,7 +17,9 @@ const setup = (secretWord = "party") => {
   hookActions.getSecretWord = mockGetSecretWord;
   mockGetSecretWord.mockClear();
 
-  const mockUseReducer = jest.fn().mockReturnValue([{ secretWord }, jest.fn()]);
+  const mockUseReducer = jest
+    .fn()
+    .mockReturnValue([{ secretWord, language: "en" }, jest.fn()]);
   React.useReducer = mockUseReducer;
   // use mount becnause useEffect not called on `shallow`
   return mount(<App />);
