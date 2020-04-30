@@ -4,11 +4,6 @@ import languageContext from "./contexts/languageContext";
 import successContext from "./contexts/successContext";
 import { getStringByLanguage } from "./helpers/strings";
 
-const handleSubmitButton = (event, setCurrentGuess) => {
-  event.preventDefault();
-  setCurrentGuess("");
-};
-
 const Input = ({ secretWord }) => {
   const [currentGuess, setCurrentGuess] = React.useState("");
   const [success, setSuccess] = successContext.useSuccess();
@@ -33,7 +28,13 @@ const Input = ({ secretWord }) => {
           data-test="submit-button"
           className="btn btn-primary"
           type="submit"
-          onClick={e => handleSubmitButton(e, setCurrentGuess)}
+          onClick={e => {
+            e.preventDefault();
+            if (currentGuess === secretWord) {
+              setSuccess(true);
+            }
+            setCurrentGuess("");
+          }}
         >
           {getStringByLanguage(language, "submit")}
         </button>
