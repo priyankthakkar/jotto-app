@@ -4,6 +4,7 @@ import languageContext from "./contexts/languageContext";
 import Input from "./Input";
 import LanguagePicker from "./LanguagePicker";
 import successContext from "./contexts/successContext";
+import guessedWordsContext from "./contexts/guessedWordsContext";
 import Congrats from "./Congrats";
 import GuessedWords from "./GuessedWords";
 
@@ -63,11 +64,13 @@ const App = () => {
     <div data-test="component-app" className="container">
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
-        <successContext.SuccessProvider>
-          <Congrats />
-          <Input secretWord={state.secretWord} />
-        </successContext.SuccessProvider>
-        {/* <GuessedWords /> */}
+        <guessedWordsContext.GuessedWordsProvider>
+          <successContext.SuccessProvider>
+            <Congrats />
+            <Input secretWord={state.secretWord} />
+          </successContext.SuccessProvider>
+          <GuessedWords />
+        </guessedWordsContext.GuessedWordsProvider>
       </languageContext.Provider>
     </div>
   );

@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
 import React from "react";
 import languageContext from "./contexts/languageContext";
+import guessedWordsContext from "./contexts/guessedWordsContext";
 import { getStringByLanguage } from "./helpers/strings";
 /**
  * Functional react component for displyaing guessed words, or show instructions when no words are guessed.
@@ -11,8 +11,9 @@ import { getStringByLanguage } from "./helpers/strings";
  * @returns {JSX.Element} Displays guessed words and matching letters along with a title or instruction if no words are guessed.
  */
 
-const GuessedWords = ({ guessedWords }) => {
+const GuessedWords = () => {
   let content = <></>;
+  const [guessedWords] = guessedWordsContext.useGuessedWords();
   const language = React.useContext(languageContext);
 
   if (guessedWords.length === 0) {
@@ -38,7 +39,9 @@ const GuessedWords = ({ guessedWords }) => {
           <thead className="table-dark">
             <tr>
               <th>getStringByLanguage(language, 'guessedWords')</th>
-              <th>getStringByLanguage(language, 'matchingLettersColumnHeader')</th>
+              <th>
+                getStringByLanguage(language, 'matchingLettersColumnHeader')
+              </th>
             </tr>
           </thead>
           <tbody>{guessedWordsRows}</tbody>
@@ -48,15 +51,6 @@ const GuessedWords = ({ guessedWords }) => {
   }
 
   return <div data-test="component-guessed-words">{content}</div>;
-};
-
-GuessedWords.propTypes = {
-  guessedWords: PropTypes.arrayOf(
-    PropTypes.shape({
-      guessedWord: PropTypes.string.isRequired,
-      letterMatchCount: PropTypes.number.isRequired
-    })
-  ).isRequired
 };
 
 export default GuessedWords;
