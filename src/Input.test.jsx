@@ -3,6 +3,7 @@ import React from "react";
 import { checkProps, findByAttribute } from "../test/testUtils";
 import languageContext from "./contexts/languageContext";
 import successContext from "./contexts/successContext";
+import guessedWordsContext from "./contexts/guessedWordsContext";
 import Input from "./Input";
 
 /**
@@ -20,7 +21,9 @@ const setup = ({ secretWord, success, language }) => {
   const wrapper = mount(
     <languageContext.Provider value={language}>
       <successContext.SuccessProvider value={[success, jest.fn()]}>
-        <Input secretWord={secretWord} />
+        <guessedWordsContext.GuessedWordsProvider>
+          <Input secretWord={secretWord} />
+        </guessedWordsContext.GuessedWordsProvider>
       </successContext.SuccessProvider>
     </languageContext.Provider>
   );

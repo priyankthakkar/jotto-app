@@ -34,13 +34,13 @@ const GuessedWords = () => {
 
     content = (
       <div data-test="guessed-words">
-        <h3>getStringByLanguage(language, 'guessColumnHeader')</h3>
+        <h3>{getStringByLanguage(language, 'guessColumnHeader')}</h3>
         <table className="table table-sm">
           <thead className="table-dark">
             <tr>
-              <th>getStringByLanguage(language, 'guessedWords')</th>
+              <th>{getStringByLanguage(language, "guessedWords")}</th>
               <th>
-                getStringByLanguage(language, 'matchingLettersColumnHeader')
+                {getStringByLanguage(language, "matchingLettersColumnHeader")}
               </th>
             </tr>
           </thead>
